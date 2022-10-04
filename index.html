@@ -18,110 +18,39 @@ title: petrepa
 	</p>
 </section>
 
-
-<section id="two">
-	<h2>Some of my work</h2>
-	<div class="row">
-		{% for work in site.some_of_my_work %}
-		<article class="col-6 col-12-xsmall work-item">
-
-			<a href="{{ work.url }}" class="image fit thumb">
-				<img src="{{ work.image_path }}" alt="" />
-			</a>
-
-			<h3>
-				<a href="{{ work.url }}">
-					<span class="label">{{ work.name }}</span>
-				</a>
-			</h3>
-
-			<p>{{ work.description }}</p>
-
-		</article>
-		{% endfor %}
-	</div>
-</section>
-
-<section id="three">
-	<h2>NTNU related</h2>
-	<div class="row">
-		{% for item in site.ntnu_related %}
-		<article class="col-6 col-12-xsmall work-item">
-			{% if item.layout == "redirect" %}
-				{% assign url = item.more_info_link %}
-			{% else %}
-				{% assign url = item.url %}
-			{% endif %}
-
-			<a href="{{ url }}" class="image fit_video thumb">
-				<img src="{{ item.image_path }}" alt="" />
-			</a>
+{% assign collections = site.collections | sort: "order" %}
+{% for collection in collections %}
+	{% assign name = collection.label %}
+	<section>
+		<h2>{{ collection.name }}</h2>
+		<div class="row">
+		{% for page in site[name] %}
+			<article class="col-6 col-12-xsmall work-item">
+				{% if page.layout == "redirect" %}
+					{% assign url = page.more_info_link %}
+					{% assign fit = "fit_video" %}
+				{% else %}
+					{% assign url = page.url %}
+					{% assign fit = "fit" %}
+				{% endif %}
 			
-			<h3>
-				<a href="{{ url }}">
-					<span class="label">{{ item.name }}</span>
+				<a href="{{ url }}" class="image {{ fit }} thumb">
+					<img src="{{ page.image_path }}" alt="" />
 				</a>
-			</h3>
+				
+				<h3>
+					<a href="{{ url }}">
+						<span class="label">{{ page.name }}</span>
+					</a>
+				</h3>
+		
+				<p>{{ page.description }}</p>
+			
+			
+			
+			</article>
 
-			<p>{{ item.description }}</p>
-
-		</article>
 		{% endfor %}
-	</div>
-</section>
-
-<!-- Four -->
-<section id="four">
-<h2>Honourable Mentions</h2>
-<div class="row">
-	{% for item in site.honourable_mentions %}
-	<article class="col-6 col-12-xsmall work-item">
-		{% if item.layout == "redirect" %}
-			{% assign url = item.more_info_link %}
-		{% else %}
-			{% assign url = item.url %}
-		{% endif %}
-
-		<a href="{{ url }}" class="image fit_video thumb">
-			<img src="{{ item.image_path }}" alt="" />
-		</a>
-		
-		<h3>
-			<a href="{{ url }}">
-				<span class="label">{{ item.name }}</span>
-			</a>
-		</h3>
-
-		<p>{{ item.description }}</p>
-
-	</article>
-	{% endfor %}
-</section>
-
-<!-- Five -->
-<section id="five">
-<h2>My Favorite Open Source Projects</h2>
-<div class="row">
-	{% for item in site.favorites %}
-	<article class="col-6 col-12-xsmall work-item">
-		{% if item.layout == "redirect" %}
-			{% assign url = item.more_info_link %}
-		{% else %}
-			{% assign url = item.url %}
-		{% endif %}
-
-		<a href="{{ url }}" class="image fit_logo thumb">
-			<img src="{{ item.image_path }}" alt="" />
-		</a>
-		
-		<h3>
-			<a href="{{ url }}">
-				<span class="label">{{ item.name }}</span>
-			</a>
-		</h3>
-
-		<p>{{ item.description }}</p>
-
-	</article>
-	{% endfor %}
-</section>
+		</div>
+	</section>
+{% endfor %}
