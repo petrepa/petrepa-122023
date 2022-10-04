@@ -21,7 +21,7 @@ title: petrepa
 {% assign collections = site.collections | sort: "order" %}
 {% for collection in collections %}
 	{% assign name = collection.label %}
-	<section>
+	<section id="{{ collection.order }}">
 		<h2>{{ collection.name }}</h2>
 		<div class="row">
 		{% for page in site[name] %}

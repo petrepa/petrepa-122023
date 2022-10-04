@@ -3,18 +3,18 @@ collections:
   some_of_my_work:
     output: true
     name: Some of my work
-    order: 1
+    order: 0
   ntnu_related:
     output: true
     name: NTNU related
-    order: 2
+    order: 1
   honourable_mentions:
     output: true
     name: Honourable Mentions
-    order: 3
+    order: 2
   favorites:
     output: true
     name: My Favorite Open Source Projects
-    order: 4
+    order: 3
 
 collections_dir: collections
