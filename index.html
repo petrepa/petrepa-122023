@@ -20,6 +20,7 @@ title: petrepa
 
 {% assign collections = site.collections | sort: "order" %}
 {% for collection in collections %}
+{% if collection != nil %}
 	{% assign name = collection.label %}
 	<section id="{{ collection.order }}">
 		<h2>{{ collection.name }}</h2>
@@ -53,4 +54,5 @@ title: petrepa
 		{% endfor %}
 		</div>
 	</section>
+	{% endif %}
 {% endfor %}
